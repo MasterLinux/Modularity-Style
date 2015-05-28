@@ -1,0 +1,42 @@
+$columns: 12;
+$size-small: 768px;
+$size-medium: 970px;
+$size-small-name: small;
+$size-medium-name: medium;
+$size-large-name: large;
+
+@function grid-width($n) {
+  @return 100% / ($columns / $n);
+}
+
+.row {
+  //phones
+  @media (max-width: $size-small) {
+    @for $i from 1 through $columns {
+      .column-#{$size-small-name}-#{$i} {
+        width: grid-width($i);
+        float: left;
+      }
+    }
+  }
+
+  //tablets
+  @media (min-width: $size-small) and (max-width: $size-medium) {
+    @for $i from 1 through $columns {
+      .column-#{$size-medium-name}-#{$i} {
+        width: grid-width($i);
+        float: left;
+      }
+    }
+  }
+
+  //desktops
+  @media (min-width: $size-medium) {
+    @for $i from 1 through $columns {
+      .column-#{$size-large-name}-#{$i} {
+        width: grid-width($i);
+        float: left;
+      }
+    }
+  }
+}
