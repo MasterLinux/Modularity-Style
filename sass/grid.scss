@@ -5,37 +5,40 @@ $size-small-name: small;
 $size-medium-name: medium;
 $size-large-name: large;
 
-@function grid-width($n) {
+@function grid-column-width($n) {
   @return 100% / ($columns / $n);
 }
 
 .row {
-  //phones
-  @media (max-width: $size-small) {
-    @for $i from 1 through $columns {
-      .column-#{$size-small-name}-#{$i} {
-        width: grid-width($i);
-        float: left;
+  clear: both;
+
+  .column {
+    float: left;
+
+    //phones
+    @media (max-width: $size-small) {
+      @for $i from 1 through $columns {
+        &.size-#{$size-small-name}-#{$i} {
+          width: grid-column-width($i);
+        }
       }
     }
-  }
 
-  //tablets
-  @media (min-width: $size-small) and (max-width: $size-medium) {
-    @for $i from 1 through $columns {
-      .column-#{$size-medium-name}-#{$i} {
-        width: grid-width($i);
-        float: left;
+    //tablets
+    @media (min-width: $size-small) and (max-width: $size-medium) {
+      @for $i from 1 through $columns {
+        &.size-#{$size-medium-name}-#{$i} {
+          width: grid-column-width($i);
+        }
       }
     }
-  }
 
-  //desktops
-  @media (min-width: $size-medium) {
-    @for $i from 1 through $columns {
-      .column-#{$size-large-name}-#{$i} {
-        width: grid-width($i);
-        float: left;
+    //desktops
+    @media (min-width: $size-medium) {
+      @for $i from 1 through $columns {
+        &.size-#{$size-large-name}-#{$i} {
+          width: grid-column-width($i);
+        }
       }
     }
   }
