@@ -6,7 +6,7 @@ $grid-type-medium: medium;
 $grid-type-large: large;
 
 // Calculates the width of a column by its weight
-@function grid-column-width($weight) {
+@function calc-grid-column-width($weight) {
   @return 100% / ($grid-columns / $weight);
 }
 
@@ -14,7 +14,7 @@ $grid-type-large: large;
 @mixin grid-columns($type) {
   @for $i from 1 through $grid-columns {
     &.size-#{$type}-#{$i} {
-      width: grid-column-width($i);
+      width: calc-grid-column-width($i);
     }
   }
 }
