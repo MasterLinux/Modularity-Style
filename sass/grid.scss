@@ -1,12 +1,22 @@
-$columns: 12;
-$size-small: 768px;
-$size-medium: 970px;
-$size-small-name: small;
-$size-medium-name: medium;
-$size-large-name: large;
+$grid-columns: 12;
+$grid-size-small: 768px;
+$grid-size-medium: 970px;
+$grid-type-small: small;
+$grid-type-medium: medium;
+$grid-type-large: large;
 
-@function grid-column-width($n) {
-  @return 100% / ($columns / $n);
+// Calculates the width of a column by its weight
+@function grid-column-width($weight) {
+  @return 100% / ($grid-columns / $weight);
+}
+
+// Creates all classes for a specific grid type
+@mixin grid-columns($type) {
+  @for $i from 1 through $grid-columns {
+    &.size-#{$type}-#{$i} {
+      width: grid-column-width($i);
+    }
+  }
 }
 
 .row {
@@ -16,30 +26,18 @@ $size-large-name: large;
     float: left;
 
     //phones
-    @media (max-width: $size-small) {
-      @for $i from 1 through $columns {
-        &.size-#{$size-small-name}-#{$i} {
-          width: grid-column-width($i);
-        }
-      }
+    @media (max-width: $grid-size-small) {
+      @include grid-columns($grid-type-small);
     }
 
     //tablets
-    @media (min-width: $size-small) and (max-width: $size-medium) {
-      @for $i from 1 through $columns {
-        &.size-#{$size-medium-name}-#{$i} {
-          width: grid-column-width($i);
-        }
-      }
+    @media (min-width: $grid-size-small) and (max-width: $grid-size-medium) {
+      @include grid-columns($grid-type-medium);
     }
 
     //desktops
-    @media (min-width: $size-medium) {
-      @for $i from 1 through $columns {
-        &.size-#{$size-large-name}-#{$i} {
-          width: grid-column-width($i);
-        }
-      }
+    @media (min-width: $grid-size-medium) {
+      @include grid-columns($grid-type-large);
     }
   }
 }
