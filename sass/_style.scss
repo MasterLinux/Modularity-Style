@@ -1,5 +1,4 @@
 // android pixel ratios
-$pixel-ratio-ldpi: 0.75;
 $pixel-ratio-mdpi: 1.0;
 $pixel-ratio-hdpi: 1.5;
 $pixel-ratio-xhdpi: 2.0;
@@ -33,12 +32,7 @@ $path-image-root: "../res";
 }
 
 @mixin background-image($image-name, $color: transparent, $position: 0% 0%, $size: auto auto, $repeat: repeat, $attachment: scroll) {
-  @media screen and (-webkit-device-pixel-ratio: $pixel-ratio-ldpi) {
-    background: create-image-url(ldpi, $image-name) $color;
-  }
-
-  // usually used for desktop
-  @media screen and (-webkit-device-pixel-ratio: $pixel-ratio-mdpi) {
+  @media screen and (-webkit-max-device-pixel-ratio: $pixel-ratio-mdpi) {
     background-image: create-image-url(mdpi, $image-name);
   }
 

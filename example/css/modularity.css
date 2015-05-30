@@ -3,7 +3,14 @@
 /* backgrounds */
 .row {
   clear: both; }
+  .row::after {
+    visibility: hidden;
+    display: block;
+    clear: both;
+    content: ""; }
   .row .column {
+    padding: 0 5px;
+    box-sizing: border-box;
     float: left; }
     @media (max-width: 768px) {
       .row .column.size-small-1 {
@@ -88,9 +95,13 @@ input {
   background: #333333;
   border: 1px solid #8292a3;
   color: #8292a3;
+  font-size: 14px;
+  box-sizing: border-box;
   border-radius: 8px;
-  padding: 5px;
-  font-size: 14px; }
+  padding: 5px; }
+  input:disabled {
+    background: #8292a3;
+    color: #556270; }
   input:focus {
     border: 1px solid #ff9900;
     color: #ff9900;
@@ -105,10 +116,7 @@ input {
     background-repeat: no-repeat;
     background-color: #333333;
     padding: 5px 5px 5px 25px; }
-    @media screen and (-webkit-device-pixel-ratio: 0.75) {
-      input.search {
-        background: url("../res/drawable-ldpi/ic_search.png") #333333; } }
-    @media screen and (-webkit-device-pixel-ratio: 1) {
+    @media screen and (-webkit-max-device-pixel-ratio: 1) {
       input.search {
         background-image: url("../res/drawable-mdpi/ic_search.png"); } }
     @media screen and (-webkit-device-pixel-ratio: 1.5) {
@@ -123,13 +131,29 @@ input {
     @media screen and (-webkit-device-pixel-ratio: 4) {
       input.search {
         background-image: url("../res/drawable-xxxhdpi/ic_search.png"); } }
+    input.search:disabled {
+      background-size: 25px !important;
+      background-position: center left;
+      background-color: #8292a3; }
+      @media screen and (-webkit-max-device-pixel-ratio: 1) {
+        input.search:disabled {
+          background-image: url("../res/drawable-mdpi/ic_search_disabled.png"); } }
+      @media screen and (-webkit-device-pixel-ratio: 1.5) {
+        input.search:disabled {
+          background-image: url("../res/drawable-hdpi/ic_search_disabled.png"); } }
+      @media screen and (-webkit-device-pixel-ratio: 2) {
+        input.search:disabled {
+          background-image: url("../res/drawable-xhdpi/ic_search_disabled.png"); } }
+      @media screen and (-webkit-device-pixel-ratio: 3) {
+        input.search:disabled {
+          background-image: url("../res/drawable-xxhdpi/ic_search_disabled.png"); } }
+      @media screen and (-webkit-device-pixel-ratio: 4) {
+        input.search:disabled {
+          background-image: url("../res/drawable-xxxhdpi/ic_search_disabled.png"); } }
     input.search:focus {
       background-size: 25px !important;
       background-position: center left; }
-      @media screen and (-webkit-device-pixel-ratio: 0.75) {
-        input.search:focus {
-          background: url("../res/drawable-ldpi/ic_search_focus.png") transparent; } }
-      @media screen and (-webkit-device-pixel-ratio: 1) {
+      @media screen and (-webkit-max-device-pixel-ratio: 1) {
         input.search:focus {
           background-image: url("../res/drawable-mdpi/ic_search_focus.png"); } }
       @media screen and (-webkit-device-pixel-ratio: 1.5) {
@@ -147,10 +171,7 @@ input {
     input.search.error {
       background-size: 25px !important;
       background-position: center left; }
-      @media screen and (-webkit-device-pixel-ratio: 0.75) {
-        input.search.error {
-          background: url("../res/drawable-ldpi/ic_search_error.png") transparent; } }
-      @media screen and (-webkit-device-pixel-ratio: 1) {
+      @media screen and (-webkit-max-device-pixel-ratio: 1) {
         input.search.error {
           background-image: url("../res/drawable-mdpi/ic_search_error.png"); } }
       @media screen and (-webkit-device-pixel-ratio: 1.5) {
@@ -165,6 +186,22 @@ input {
       @media screen and (-webkit-device-pixel-ratio: 4) {
         input.search.error {
           background-image: url("../res/drawable-xxxhdpi/ic_search_error.png"); } }
+
+/* colors */
+/* sizes */
+/* backgrounds */
+button {
+  min-height: 44px;
+  min-width: 120px;
+  border: 1px solid #8292a3;
+  color: #8292a3;
+  background: #556270;
+  cursor: pointer; }
+  button:focus {
+    outline: 0; }
+  button:active {
+    border: 1px solid #ff9900;
+    color: #ff9900; }
 
 body {
   background: #556270; }

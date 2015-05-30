@@ -8,17 +8,38 @@
 <body>
 
 <h1>Inputs</h1>
-<h4>Default</h4>
-<input />
+<div class="row">
+    <div class="column size-medium-4 size-large-4">
+        <h4>Default</h4>
+        <input value="Default input" />
+    </div>
+    <div class="column size-medium-4 size-large-4">
+        <h4>Disabled</h4>
+        <input disabled value="This input is disabled" />
+    </div>
+    <div class="column size-medium-4 size-large-4">
+        <h4>Error</h4>
+        <input class="error" value="Default input showing error" />
+    </div>
+</div>
 
-<h4>Error</h4>
-<input class="error" />
+<div class="row">
+    <div class="column size-medium-4 size-large-4">
+        <h4>Search</h4>
+        <input class="search" value="Search input" />
+    </div>
+    <div class="column size-medium-4 size-large-4">
+        <h4>Search disabled</h4>
+        <input disabled class="search" value="This input is disabled" />
+    </div>
+    <div class="column size-medium-4 size-large-4">
+        <h4>Search error</h4>
+        <input class="search error" value="Search input showing error" />
+    </div>
+</div>
 
-<h4>Search</h4>
-<input class="search" />
-
-<h4>Search error</h4>
-<input class="search error" />
+<h1>Buttons</h1>
+<button>Click Me!</button>
 
 <h1>Grid system</h1>
 

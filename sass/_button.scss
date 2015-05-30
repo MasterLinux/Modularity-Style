@@ -1,0 +1,19 @@
+@import "style";
+
+button {
+  min-height: 44px;
+  min-width: 120px;
+  border: 1px solid $color-primary-light;
+  color: $color-primary-light;
+  background: $color-primary;
+  cursor: pointer;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:active {
+    border: 1px solid $color-secondary;
+    color: $color-secondary;
+  }
+}

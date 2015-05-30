@@ -4,10 +4,15 @@ $grid-size-medium: 970px;
 $grid-type-small: small;
 $grid-type-medium: medium;
 $grid-type-large: large;
+$grid-padding: 10px;
 
 // Calculates the width of a column by its weight
 @function calc-grid-column-width($weight) {
   @return 100% / ($grid-columns / $weight);
+}
+
+@function calc-grid-padding($padding) {
+  @return $padding / 2;
 }
 
 // Creates all classes for a specific grid type
@@ -22,7 +27,16 @@ $grid-type-large: large;
 .row {
   clear: both;
 
+  &::after {
+    visibility: hidden;
+    display: block;
+    clear: both;
+    content: "";
+  }
+
   .column {
+    padding: 0 calc-grid-padding($grid-padding);
+    box-sizing: border-box;
     float: left;
 
     //phones

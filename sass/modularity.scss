@@ -1,6 +1,9 @@
+@charset "UTF-8";
+
 @import "style";
 @import "grid";
 @import "input";
+@import "button";
 
 body {
   background: $color-primary;

@@ -4,9 +4,15 @@ input {
   background: $color-primary-dark;
   border: 1px solid $color-primary-light;
   color: $color-primary-light;
+  font-size: $font-size-normal;
+  box-sizing: border-box;
   border-radius: 8px;
   padding: 5px;
-  font-size: $font-size-normal;
+
+  &:disabled {
+    background: $color-primary-light;
+    color: $color-primary;
+  }
 
   &:focus {
     border: 1px solid $color-secondary;
@@ -23,6 +29,10 @@ input {
   &.search {
     @include background-image("ic_search.png", $color-primary-dark, center left, 25px, no-repeat);
     padding: 5px 5px 5px 25px;
+
+    &:disabled {
+      @include background-image("ic_search_disabled.png", $color-primary-light, center left, $size: 25px);
+    }
 
     &:focus {
       @include background-image("ic_search_focus.png", $position: center left, $size: 25px);
