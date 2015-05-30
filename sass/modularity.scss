@@ -1,1 +1,7 @@
+@import "style";
 @import "grid";
+@import "input";
+
+body {
+  background: $color-primary;
+}
