@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Lora:400,700,400italic,700italic);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Noto+Serif:400,700);
 /* fonts */
 /* colors */
 /* sizes */
@@ -142,8 +142,8 @@ input {
     background: #8292a3;
     color: #556270; }
   input:focus {
-    border: 1px solid #FF9900;
-    color: #FF9900;
+    border: 1px solid #fbb829;
+    color: #fbb829;
     box-shadow: none;
     outline: 0; }
   input.error {
@@ -245,11 +245,66 @@ button {
   button:focus {
     outline: 0; }
   button:active {
-    border: 1px solid #FF9900;
-    color: #FF9900; }
+    border: 1px solid #fbb829;
+    color: #fbb829; }
+
+/* fonts */
+/* colors */
+/* sizes */
+/* backgrounds */
+p.text {
+  font-family: 'Noto Serif', serif;
+  font-size: 14px;
+  font-weight: normal;
+  color: #0c0c0c;
+  box-sizing: border-box;
+  padding: 5px; }
+  p.text.warning {
+    background-size: 32px !important;
+    background-position: 2px 2px;
+    background-repeat: no-repeat;
+    background-color: #fbb829;
+    padding: 5px 5px 5px 35px; }
+    @media screen and (-webkit-max-device-pixel-ratio: 1) {
+      p.text.warning {
+        background-image: url("../res/drawable-mdpi/ic_info.png"); } }
+    @media screen and (-webkit-device-pixel-ratio: 1.5) {
+      p.text.warning {
+        background-image: url("../res/drawable-hdpi/ic_info.png"); } }
+    @media screen and (-webkit-device-pixel-ratio: 2) {
+      p.text.warning {
+        background-image: url("../res/drawable-xhdpi/ic_info.png"); } }
+    @media screen and (-webkit-device-pixel-ratio: 3) {
+      p.text.warning {
+        background-image: url("../res/drawable-xxhdpi/ic_info.png"); } }
+    @media screen and (-webkit-device-pixel-ratio: 4) {
+      p.text.warning {
+        background-image: url("../res/drawable-xxxhdpi/ic_info.png"); } }
+  p.text.error {
+    background-size: 32px !important;
+    background-position: 2px 2px;
+    background-repeat: no-repeat;
+    background-color: #f02311;
+    padding: 5px 5px 5px 35px;
+    color: #e0e0e0; }
+    @media screen and (-webkit-max-device-pixel-ratio: 1) {
+      p.text.error {
+        background-image: url("../res/drawable-mdpi/ic_error.png"); } }
+    @media screen and (-webkit-device-pixel-ratio: 1.5) {
+      p.text.error {
+        background-image: url("../res/drawable-hdpi/ic_error.png"); } }
+    @media screen and (-webkit-device-pixel-ratio: 2) {
+      p.text.error {
+        background-image: url("../res/drawable-xhdpi/ic_error.png"); } }
+    @media screen and (-webkit-device-pixel-ratio: 3) {
+      p.text.error {
+        background-image: url("../res/drawable-xxhdpi/ic_error.png"); } }
+    @media screen and (-webkit-device-pixel-ratio: 4) {
+      p.text.error {
+        background-image: url("../res/drawable-xxxhdpi/ic_error.png"); } }
 
 * {
-  font-family: "Source Sans Pro", sans-serif; }
+  font-family: 'Source Sans Pro', sans-serif; }
 
 body {
   background: #556270; }

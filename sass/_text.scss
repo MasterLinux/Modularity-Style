@@ -1,0 +1,23 @@
+@import "style";
+
+p {
+  &.text {
+    @include font-secondary();
+    font-size: $font-size-normal;
+    font-weight: normal;
+    color: $color-font-dark;
+    box-sizing: border-box;
+    padding: $padding-default;
+
+    &.warning {
+      @include background-image("ic_info.png", $color-warning, 2px 2px, 32px, no-repeat);
+      padding: $padding-default $padding-default $padding-default 35px;
+    }
+
+    &.error {
+      @include background-image("ic_error.png", $color-error, 2px 2px, 32px, no-repeat);
+      padding: $padding-default $padding-default $padding-default 35px;
+      color: $color-font-light;
+    }
+  }
+}
