@@ -1,5 +1,32 @@
 @import "style";
 
+$text-icon-width: 32px;
+$text-icon-height: auto;
+$text-icon-pos-horizontal: -2px;
+$text-icon-pos-vertical: -2px;
+
+$text-types: (
+        (
+                type: warning,
+                background: $color-warning
+        ), (
+                type: error,
+                background: $color-error,
+                color: $color-font-light
+        )
+);
+
+@function calc-text-padding-left() {
+  @return $padding-default * 2 + $text-icon-width + $text-icon-pos-horizontal * 2;
+}
+
+@function calc-text-icon-pos() {
+  $pos-horizontal: $padding-default + $text-icon-pos-horizontal;
+  $pos-vertical: $padding-default + $text-icon-pos-vertical;
+
+  @return $pos-horizontal $pos-vertical;
+}
+
 p {
   &.text {
     @include font-secondary();
@@ -7,17 +34,19 @@ p {
     font-weight: normal;
     color: $color-font-dark;
     box-sizing: border-box;
-    padding: $padding-default;
 
-    &.warning {
-      @include background-image("ic_info.png", $color-warning, 2px 2px, 32px, no-repeat);
-      padding: $padding-default $padding-default $padding-default 35px;
-    }
+    // create all text type styles
+    @each $type in $text-types {
+      $type-name: map_get($type, type);
 
-    &.error {
-      @include background-image("ic_error.png", $color-error, 2px 2px, 32px, no-repeat);
-      padding: $padding-default $padding-default $padding-default 35px;
-      color: $color-font-light;
+      &.#{$type-name} {
+        @include background-image("ic_" + $type-name + ".png", map_get($type, background), calc-text-icon-pos(), $text-icon-width $text-icon-height, no-repeat);
+        padding: $padding-default $padding-default $padding-default calc-text-padding-left();
+
+        @if map_has_key($type, color) {
+          color: map_get($type, color);
+        }
+      }
     }
   }
 }
