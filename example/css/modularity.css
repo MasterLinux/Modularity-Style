@@ -11,8 +11,9 @@
     clear: both;
     content: ""; }
   .row .column {
-    padding: 0 5px;
-    box-sizing: border-box; }
+    padding: 5px;
+    box-sizing: border-box;
+    min-height: 1px; }
     @media (max-width: 768px) {
       .row .column.size-small-1 {
         width: 8.33333%;
@@ -157,74 +158,74 @@ input {
     padding: 5px 5px 5px 25px; }
     @media screen and (-webkit-max-device-pixel-ratio: 1) {
       input.search {
-        background-image: url("../res/drawable-mdpi/ic_search.png"); } }
+        background-image: url("../images/drawable-mdpi/ic_search.png"); } }
     @media screen and (-webkit-device-pixel-ratio: 1.5) {
       input.search {
-        background-image: url("../res/drawable-hdpi/ic_search.png"); } }
+        background-image: url("../images/drawable-hdpi/ic_search.png"); } }
     @media screen and (-webkit-device-pixel-ratio: 2) {
       input.search {
-        background-image: url("../res/drawable-xhdpi/ic_search.png"); } }
+        background-image: url("../images/drawable-xhdpi/ic_search.png"); } }
     @media screen and (-webkit-device-pixel-ratio: 3) {
       input.search {
-        background-image: url("../res/drawable-xxhdpi/ic_search.png"); } }
+        background-image: url("../images/drawable-xxhdpi/ic_search.png"); } }
     @media screen and (-webkit-device-pixel-ratio: 4) {
       input.search {
-        background-image: url("../res/drawable-xxxhdpi/ic_search.png"); } }
+        background-image: url("../images/drawable-xxxhdpi/ic_search.png"); } }
     input.search:disabled {
       background-size: 25px !important;
       background-position: center left;
       background-color: #8292a3; }
       @media screen and (-webkit-max-device-pixel-ratio: 1) {
         input.search:disabled {
-          background-image: url("../res/drawable-mdpi/ic_search_disabled.png"); } }
+          background-image: url("../images/drawable-mdpi/ic_search_disabled.png"); } }
       @media screen and (-webkit-device-pixel-ratio: 1.5) {
         input.search:disabled {
-          background-image: url("../res/drawable-hdpi/ic_search_disabled.png"); } }
+          background-image: url("../images/drawable-hdpi/ic_search_disabled.png"); } }
       @media screen and (-webkit-device-pixel-ratio: 2) {
         input.search:disabled {
-          background-image: url("../res/drawable-xhdpi/ic_search_disabled.png"); } }
+          background-image: url("../images/drawable-xhdpi/ic_search_disabled.png"); } }
       @media screen and (-webkit-device-pixel-ratio: 3) {
         input.search:disabled {
-          background-image: url("../res/drawable-xxhdpi/ic_search_disabled.png"); } }
+          background-image: url("../images/drawable-xxhdpi/ic_search_disabled.png"); } }
       @media screen and (-webkit-device-pixel-ratio: 4) {
         input.search:disabled {
-          background-image: url("../res/drawable-xxxhdpi/ic_search_disabled.png"); } }
+          background-image: url("../images/drawable-xxxhdpi/ic_search_disabled.png"); } }
     input.search:focus {
       background-size: 25px !important;
       background-position: center left; }
       @media screen and (-webkit-max-device-pixel-ratio: 1) {
         input.search:focus {
-          background-image: url("../res/drawable-mdpi/ic_search_focus.png"); } }
+          background-image: url("../images/drawable-mdpi/ic_search_focus.png"); } }
       @media screen and (-webkit-device-pixel-ratio: 1.5) {
         input.search:focus {
-          background-image: url("../res/drawable-hdpi/ic_search_focus.png"); } }
+          background-image: url("../images/drawable-hdpi/ic_search_focus.png"); } }
       @media screen and (-webkit-device-pixel-ratio: 2) {
         input.search:focus {
-          background-image: url("../res/drawable-xhdpi/ic_search_focus.png"); } }
+          background-image: url("../images/drawable-xhdpi/ic_search_focus.png"); } }
       @media screen and (-webkit-device-pixel-ratio: 3) {
         input.search:focus {
-          background-image: url("../res/drawable-xxhdpi/ic_search_focus.png"); } }
+          background-image: url("../images/drawable-xxhdpi/ic_search_focus.png"); } }
       @media screen and (-webkit-device-pixel-ratio: 4) {
         input.search:focus {
-          background-image: url("../res/drawable-xxxhdpi/ic_search_focus.png"); } }
+          background-image: url("../images/drawable-xxxhdpi/ic_search_focus.png"); } }
     input.search.error {
       background-size: 25px !important;
       background-position: center left; }
       @media screen and (-webkit-max-device-pixel-ratio: 1) {
         input.search.error {
-          background-image: url("../res/drawable-mdpi/ic_search_error.png"); } }
+          background-image: url("../images/drawable-mdpi/ic_search_error.png"); } }
       @media screen and (-webkit-device-pixel-ratio: 1.5) {
         input.search.error {
-          background-image: url("../res/drawable-hdpi/ic_search_error.png"); } }
+          background-image: url("../images/drawable-hdpi/ic_search_error.png"); } }
       @media screen and (-webkit-device-pixel-ratio: 2) {
         input.search.error {
-          background-image: url("../res/drawable-xhdpi/ic_search_error.png"); } }
+          background-image: url("../images/drawable-xhdpi/ic_search_error.png"); } }
       @media screen and (-webkit-device-pixel-ratio: 3) {
         input.search.error {
-          background-image: url("../res/drawable-xxhdpi/ic_search_error.png"); } }
+          background-image: url("../images/drawable-xxhdpi/ic_search_error.png"); } }
       @media screen and (-webkit-device-pixel-ratio: 4) {
         input.search.error {
-          background-image: url("../res/drawable-xxxhdpi/ic_search_error.png"); } }
+          background-image: url("../images/drawable-xxxhdpi/ic_search_error.png"); } }
 
 /* fonts */
 /* colors */
@@ -267,19 +268,19 @@ p.text {
     padding: 5px 5px 5px 35px; }
     @media screen and (-webkit-max-device-pixel-ratio: 1) {
       p.text.warning {
-        background-image: url("../res/drawable-mdpi/ic_info.png"); } }
+        background-image: url("../images/drawable-mdpi/ic_info.png"); } }
     @media screen and (-webkit-device-pixel-ratio: 1.5) {
       p.text.warning {
-        background-image: url("../res/drawable-hdpi/ic_info.png"); } }
+        background-image: url("../images/drawable-hdpi/ic_info.png"); } }
     @media screen and (-webkit-device-pixel-ratio: 2) {
       p.text.warning {
-        background-image: url("../res/drawable-xhdpi/ic_info.png"); } }
+        background-image: url("../images/drawable-xhdpi/ic_info.png"); } }
     @media screen and (-webkit-device-pixel-ratio: 3) {
       p.text.warning {
-        background-image: url("../res/drawable-xxhdpi/ic_info.png"); } }
+        background-image: url("../images/drawable-xxhdpi/ic_info.png"); } }
     @media screen and (-webkit-device-pixel-ratio: 4) {
       p.text.warning {
-        background-image: url("../res/drawable-xxxhdpi/ic_info.png"); } }
+        background-image: url("../images/drawable-xxxhdpi/ic_info.png"); } }
   p.text.error {
     background-size: 32px !important;
     background-position: 2px 2px;
@@ -289,24 +290,22 @@ p.text {
     color: #e0e0e0; }
     @media screen and (-webkit-max-device-pixel-ratio: 1) {
       p.text.error {
-        background-image: url("../res/drawable-mdpi/ic_error.png"); } }
+        background-image: url("../images/drawable-mdpi/ic_error.png"); } }
     @media screen and (-webkit-device-pixel-ratio: 1.5) {
       p.text.error {
-        background-image: url("../res/drawable-hdpi/ic_error.png"); } }
+        background-image: url("../images/drawable-hdpi/ic_error.png"); } }
     @media screen and (-webkit-device-pixel-ratio: 2) {
       p.text.error {
-        background-image: url("../res/drawable-xhdpi/ic_error.png"); } }
+        background-image: url("../images/drawable-xhdpi/ic_error.png"); } }
     @media screen and (-webkit-device-pixel-ratio: 3) {
       p.text.error {
-        background-image: url("../res/drawable-xxhdpi/ic_error.png"); } }
+        background-image: url("../images/drawable-xxhdpi/ic_error.png"); } }
     @media screen and (-webkit-device-pixel-ratio: 4) {
       p.text.error {
-        background-image: url("../res/drawable-xxxhdpi/ic_error.png"); } }
+        background-image: url("../images/drawable-xxxhdpi/ic_error.png"); } }
 
 * {
   font-family: 'Source Sans Pro', sans-serif; }
 
 body {
   background: #556270; }
-
-/*# sourceMappingURL=modularity.css.map */

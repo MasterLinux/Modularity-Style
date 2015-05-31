@@ -40,7 +40,7 @@ $color-warning: rgb(251, 184, 41);
 $font-size-normal: 14px;
 
 /* backgrounds */
-$path-image-root: "../res";
+$path-image-root: "../images";
 
 // get the file path of the given image name
 @function create-image-url($ratio, $image-name) {

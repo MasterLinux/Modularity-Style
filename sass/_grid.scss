@@ -16,11 +16,17 @@ $grid-padding: 10px;
 }
 
 // Creates all classes for a specific grid type
-@mixin grid-columns($type) {
+@mixin grid-columns($type, $show-class-name: false) {
   @for $i from 1 through $grid-columns {
     &.size-#{$type}-#{$i} {
       width: calc-grid-column-width($i);
       float: left;
+
+      @if $show-class-name {
+        &:before {
+          content: ".size-" + $type + "-" + $i;
+        }
+      }
     }
   }
 }
@@ -36,8 +42,9 @@ $grid-padding: 10px;
   }
 
   .column {
-    padding: 0 calc-grid-padding($grid-padding);
+    padding: calc-grid-padding($grid-padding);
     box-sizing: border-box;
+    min-height: 1px;
 
     //phones
     @media (max-width: $grid-size-small) {
