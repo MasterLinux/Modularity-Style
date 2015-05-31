@@ -315,152 +315,142 @@ p.text {
 /* colors */
 /* sizes */
 /* backgrounds */
-ul.list {
+nav ul.list {
   list-style: none;
-  font-weight: lighter; }
-  ul.list.selectable li.parent {
-    padding: 0 0 0 20px; }
-  ul.list.selectable li:hover, ul.list.selectable li.selected {
-    background: #fbb829;
-    cursor: pointer; }
-    ul.list.selectable li:hover.file, ul.list.selectable li.selected.file {
-      background-size: 20px auto !important;
-      background-position: center left;
-      background-repeat: no-repeat;
-      background-color: #fbb829;
-      padding-left: 20px; }
-      @media screen and (-webkit-max-device-pixel-ratio: 1) {
-        ul.list.selectable li:hover.file, ul.list.selectable li.selected.file {
-          background-image: url("../images/drawable-mdpi/ic_file.png"); } }
-      @media screen and (-webkit-device-pixel-ratio: 1.5) {
-        ul.list.selectable li:hover.file, ul.list.selectable li.selected.file {
-          background-image: url("../images/drawable-hdpi/ic_file.png"); } }
-      @media screen and (-webkit-device-pixel-ratio: 2) {
-        ul.list.selectable li:hover.file, ul.list.selectable li.selected.file {
-          background-image: url("../images/drawable-xhdpi/ic_file.png"); } }
-      @media screen and (-webkit-device-pixel-ratio: 3) {
-        ul.list.selectable li:hover.file, ul.list.selectable li.selected.file {
-          background-image: url("../images/drawable-xxhdpi/ic_file.png"); } }
-      @media screen and (-webkit-device-pixel-ratio: 4) {
-        ul.list.selectable li:hover.file, ul.list.selectable li.selected.file {
-          background-image: url("../images/drawable-xxxhdpi/ic_file.png"); } }
-    ul.list.selectable li:hover.folder, ul.list.selectable li.selected.folder {
-      background-size: 20px auto !important;
-      background-position: center left;
-      background-repeat: no-repeat;
-      background-color: #fbb829;
-      padding-left: 20px; }
-      @media screen and (-webkit-max-device-pixel-ratio: 1) {
-        ul.list.selectable li:hover.folder, ul.list.selectable li.selected.folder {
-          background-image: url("../images/drawable-mdpi/ic_folder.png"); } }
-      @media screen and (-webkit-device-pixel-ratio: 1.5) {
-        ul.list.selectable li:hover.folder, ul.list.selectable li.selected.folder {
-          background-image: url("../images/drawable-hdpi/ic_folder.png"); } }
-      @media screen and (-webkit-device-pixel-ratio: 2) {
-        ul.list.selectable li:hover.folder, ul.list.selectable li.selected.folder {
-          background-image: url("../images/drawable-xhdpi/ic_folder.png"); } }
-      @media screen and (-webkit-device-pixel-ratio: 3) {
-        ul.list.selectable li:hover.folder, ul.list.selectable li.selected.folder {
-          background-image: url("../images/drawable-xxhdpi/ic_folder.png"); } }
-      @media screen and (-webkit-device-pixel-ratio: 4) {
-        ul.list.selectable li:hover.folder, ul.list.selectable li.selected.folder {
-          background-image: url("../images/drawable-xxxhdpi/ic_folder.png"); } }
-    ul.list.selectable li:hover.parent, ul.list.selectable li.selected.parent {
-      background: none; }
-  ul.list.selectable li.selected {
-    font-weight: normal; }
-  ul.list.selectable li:active {
-    background: #ff9900; }
-    ul.list.selectable li:active.file {
-      background-size: 20px auto !important;
-      background-position: center left;
-      background-repeat: no-repeat;
-      background-color: #ff9900;
-      padding-left: 20px; }
-      @media screen and (-webkit-max-device-pixel-ratio: 1) {
-        ul.list.selectable li:active.file {
-          background-image: url("../images/drawable-mdpi/ic_file.png"); } }
-      @media screen and (-webkit-device-pixel-ratio: 1.5) {
-        ul.list.selectable li:active.file {
-          background-image: url("../images/drawable-hdpi/ic_file.png"); } }
-      @media screen and (-webkit-device-pixel-ratio: 2) {
-        ul.list.selectable li:active.file {
-          background-image: url("../images/drawable-xhdpi/ic_file.png"); } }
-      @media screen and (-webkit-device-pixel-ratio: 3) {
-        ul.list.selectable li:active.file {
-          background-image: url("../images/drawable-xxhdpi/ic_file.png"); } }
-      @media screen and (-webkit-device-pixel-ratio: 4) {
-        ul.list.selectable li:active.file {
-          background-image: url("../images/drawable-xxxhdpi/ic_file.png"); } }
-    ul.list.selectable li:active.folder {
-      background-size: 20px auto !important;
-      background-position: center left;
-      background-repeat: no-repeat;
-      background-color: #ff9900;
-      padding-left: 20px; }
-      @media screen and (-webkit-max-device-pixel-ratio: 1) {
-        ul.list.selectable li:active.folder {
-          background-image: url("../images/drawable-mdpi/ic_folder.png"); } }
-      @media screen and (-webkit-device-pixel-ratio: 1.5) {
-        ul.list.selectable li:active.folder {
-          background-image: url("../images/drawable-hdpi/ic_folder.png"); } }
-      @media screen and (-webkit-device-pixel-ratio: 2) {
-        ul.list.selectable li:active.folder {
-          background-image: url("../images/drawable-xhdpi/ic_folder.png"); } }
-      @media screen and (-webkit-device-pixel-ratio: 3) {
-        ul.list.selectable li:active.folder {
-          background-image: url("../images/drawable-xxhdpi/ic_folder.png"); } }
-      @media screen and (-webkit-device-pixel-ratio: 4) {
-        ul.list.selectable li:active.folder {
-          background-image: url("../images/drawable-xxxhdpi/ic_folder.png"); } }
-    ul.list.selectable li:active.parent {
-      background: none; }
-  ul.list li {
-    border-bottom: 1px solid #333333;
+  font-weight: lighter;
+  box-sizing: border-box; }
+  nav ul.list li > ul.list {
+    padding-left: 20px; }
+  nav ul.list li a {
     padding: 5px;
-    box-sizing: border-box; }
-    ul.list li:last-child {
-      border: none; }
-    ul.list li.file {
-      background-size: 20px auto !important;
-      background-position: center left;
+    box-sizing: border-box;
+    display: block; }
+    nav ul.list li a.selected, nav ul.list li a:hover {
+      background: #fbb829;
+      font-weight: normal;
+      cursor: pointer; }
+    nav ul.list li a:active {
+      background: #ff9900; }
+    nav ul.list li a.file {
+      background-size: 20px 20px !important;
+      background-position: left center;
       background-repeat: no-repeat;
       padding-left: 20px; }
       @media screen and (-webkit-max-device-pixel-ratio: 1) {
-        ul.list li.file {
+        nav ul.list li a.file {
           background-image: url("../images/drawable-mdpi/ic_file.png"); } }
       @media screen and (-webkit-device-pixel-ratio: 1.5) {
-        ul.list li.file {
+        nav ul.list li a.file {
           background-image: url("../images/drawable-hdpi/ic_file.png"); } }
       @media screen and (-webkit-device-pixel-ratio: 2) {
-        ul.list li.file {
+        nav ul.list li a.file {
           background-image: url("../images/drawable-xhdpi/ic_file.png"); } }
       @media screen and (-webkit-device-pixel-ratio: 3) {
-        ul.list li.file {
+        nav ul.list li a.file {
           background-image: url("../images/drawable-xxhdpi/ic_file.png"); } }
       @media screen and (-webkit-device-pixel-ratio: 4) {
-        ul.list li.file {
+        nav ul.list li a.file {
           background-image: url("../images/drawable-xxxhdpi/ic_file.png"); } }
-    ul.list li.folder {
-      background-size: 20px auto !important;
-      background-position: center left;
+      nav ul.list li a.file:hover {
+        background-size: 20px 20px !important;
+        background-position: left center;
+        background-repeat: no-repeat;
+        background-color: #fbb829; }
+        @media screen and (-webkit-max-device-pixel-ratio: 1) {
+          nav ul.list li a.file:hover {
+            background-image: url("../images/drawable-mdpi/ic_file.png"); } }
+        @media screen and (-webkit-device-pixel-ratio: 1.5) {
+          nav ul.list li a.file:hover {
+            background-image: url("../images/drawable-hdpi/ic_file.png"); } }
+        @media screen and (-webkit-device-pixel-ratio: 2) {
+          nav ul.list li a.file:hover {
+            background-image: url("../images/drawable-xhdpi/ic_file.png"); } }
+        @media screen and (-webkit-device-pixel-ratio: 3) {
+          nav ul.list li a.file:hover {
+            background-image: url("../images/drawable-xxhdpi/ic_file.png"); } }
+        @media screen and (-webkit-device-pixel-ratio: 4) {
+          nav ul.list li a.file:hover {
+            background-image: url("../images/drawable-xxxhdpi/ic_file.png"); } }
+      nav ul.list li a.file:active {
+        background-size: 20px 20px !important;
+        background-position: left center;
+        background-repeat: no-repeat;
+        background-color: #ff9900; }
+        @media screen and (-webkit-max-device-pixel-ratio: 1) {
+          nav ul.list li a.file:active {
+            background-image: url("../images/drawable-mdpi/ic_file.png"); } }
+        @media screen and (-webkit-device-pixel-ratio: 1.5) {
+          nav ul.list li a.file:active {
+            background-image: url("../images/drawable-hdpi/ic_file.png"); } }
+        @media screen and (-webkit-device-pixel-ratio: 2) {
+          nav ul.list li a.file:active {
+            background-image: url("../images/drawable-xhdpi/ic_file.png"); } }
+        @media screen and (-webkit-device-pixel-ratio: 3) {
+          nav ul.list li a.file:active {
+            background-image: url("../images/drawable-xxhdpi/ic_file.png"); } }
+        @media screen and (-webkit-device-pixel-ratio: 4) {
+          nav ul.list li a.file:active {
+            background-image: url("../images/drawable-xxxhdpi/ic_file.png"); } }
+    nav ul.list li a.folder {
+      background-size: 20px 20px !important;
+      background-position: left center;
       background-repeat: no-repeat;
       padding-left: 20px; }
       @media screen and (-webkit-max-device-pixel-ratio: 1) {
-        ul.list li.folder {
+        nav ul.list li a.folder {
           background-image: url("../images/drawable-mdpi/ic_folder.png"); } }
       @media screen and (-webkit-device-pixel-ratio: 1.5) {
-        ul.list li.folder {
+        nav ul.list li a.folder {
           background-image: url("../images/drawable-hdpi/ic_folder.png"); } }
       @media screen and (-webkit-device-pixel-ratio: 2) {
-        ul.list li.folder {
+        nav ul.list li a.folder {
           background-image: url("../images/drawable-xhdpi/ic_folder.png"); } }
       @media screen and (-webkit-device-pixel-ratio: 3) {
-        ul.list li.folder {
+        nav ul.list li a.folder {
           background-image: url("../images/drawable-xxhdpi/ic_folder.png"); } }
       @media screen and (-webkit-device-pixel-ratio: 4) {
-        ul.list li.folder {
+        nav ul.list li a.folder {
           background-image: url("../images/drawable-xxxhdpi/ic_folder.png"); } }
+      nav ul.list li a.folder:hover {
+        background-size: 20px 20px !important;
+        background-position: left center;
+        background-repeat: no-repeat;
+        background-color: #fbb829; }
+        @media screen and (-webkit-max-device-pixel-ratio: 1) {
+          nav ul.list li a.folder:hover {
+            background-image: url("../images/drawable-mdpi/ic_folder.png"); } }
+        @media screen and (-webkit-device-pixel-ratio: 1.5) {
+          nav ul.list li a.folder:hover {
+            background-image: url("../images/drawable-hdpi/ic_folder.png"); } }
+        @media screen and (-webkit-device-pixel-ratio: 2) {
+          nav ul.list li a.folder:hover {
+            background-image: url("../images/drawable-xhdpi/ic_folder.png"); } }
+        @media screen and (-webkit-device-pixel-ratio: 3) {
+          nav ul.list li a.folder:hover {
+            background-image: url("../images/drawable-xxhdpi/ic_folder.png"); } }
+        @media screen and (-webkit-device-pixel-ratio: 4) {
+          nav ul.list li a.folder:hover {
+            background-image: url("../images/drawable-xxxhdpi/ic_folder.png"); } }
+      nav ul.list li a.folder:active {
+        background-size: 20px 20px !important;
+        background-position: left center;
+        background-repeat: no-repeat;
+        background-color: #ff9900; }
+        @media screen and (-webkit-max-device-pixel-ratio: 1) {
+          nav ul.list li a.folder:active {
+            background-image: url("../images/drawable-mdpi/ic_folder.png"); } }
+        @media screen and (-webkit-device-pixel-ratio: 1.5) {
+          nav ul.list li a.folder:active {
+            background-image: url("../images/drawable-hdpi/ic_folder.png"); } }
+        @media screen and (-webkit-device-pixel-ratio: 2) {
+          nav ul.list li a.folder:active {
+            background-image: url("../images/drawable-xhdpi/ic_folder.png"); } }
+        @media screen and (-webkit-device-pixel-ratio: 3) {
+          nav ul.list li a.folder:active {
+            background-image: url("../images/drawable-xxhdpi/ic_folder.png"); } }
+        @media screen and (-webkit-device-pixel-ratio: 4) {
+          nav ul.list li a.folder:active {
+            background-image: url("../images/drawable-xxxhdpi/ic_folder.png"); } }
 
 * {
   font-family: 'Source Sans Pro', sans-serif;

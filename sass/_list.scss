@@ -1,78 +1,70 @@
 @import "style";
 
 $list-padding: $padding-normal / 2;
+$list-icon-height: 20px;
 $list-icon-width: 20px;
-$list-icon-height: auto;
 
 @mixin list-background-image($image-name, $background: transparent) {
-  @include background-image($image-name, $background, $position: center left, $size: $list-icon-width $list-icon-height, $repeat: no-repeat);
-  padding-left: 20px;
+  @include background-image($image-name, $background, $position: left center, $size: $list-icon-width $list-icon-height, $repeat: no-repeat);
 }
 
-ul {
-  &.list {
-    list-style: none;
-    font-weight: lighter;
-
-    &.selectable li {
-      &.parent {
-        padding: 0 0 0 $list-icon-width;
-      }
-
-      &:hover,
-      &.selected {
-        background: $color-secondary;
-        cursor: pointer;
-
-        &.file {
-          @include list-background-image("ic_file.png", $color-secondary);
-        }
-
-        &.folder {
-          @include list-background-image("ic_folder.png", $color-secondary);
-        }
-
-        &.parent {
-          background: none;
-        }
-      }
-
-      &.selected {
-        font-weight: normal;
-      }
-
-      &:active {
-        background: $color-secondary-dark;
-
-        &.file {
-          @include list-background-image("ic_file.png", $color-secondary-dark);
-        }
-
-        &.folder {
-          @include list-background-image("ic_folder.png", $color-secondary-dark);
-        }
-
-        &.parent {
-          background: none;
-        }
-      }
-    }
-
-    li {
-      border-bottom: 1px solid $color-primary-dark;
-      padding: $list-padding;
+nav {
+  ul {
+    &.list {
+      list-style: none;
+      font-weight: lighter;
       box-sizing: border-box;
 
-      &:last-child {
-        border: none;
-      }
+      li {
+        > ul {
+          &.list {
+            padding-left: $list-icon-width;
+          }
+        }
 
-      &.file {
-        @include list-background-image("ic_file.png");
-      }
+        a {
+          //border-bottom: 1px solid $color-primary-dark;
+          padding: $list-padding;
+          box-sizing: border-box;
+          display: block;
 
-      &.folder {
-        @include list-background-image("ic_folder.png");
+          &.selected,
+          &:hover {
+            background: $color-secondary;
+            font-weight: normal;
+            cursor: pointer;
+          }
+
+          &:active {
+            background: $color-secondary-dark;
+          }
+
+          &.file {
+            @include list-background-image("ic_file.png");
+            padding-left: 20px;
+
+            &:hover {
+              @include list-background-image("ic_file.png", $color-secondary);
+            }
+
+            &:active {
+              @include list-background-image("ic_file.png", $color-secondary-dark);
+            }
+          }
+
+          &.folder {
+            @include list-background-image("ic_folder.png");
+            padding-left: 20px;
+
+            &:hover {
+              @include list-background-image("ic_folder.png", $color-secondary);
+            }
+
+            &:active {
+              @include list-background-image("ic_folder.png", $color-secondary-dark);
+            }
+          }
+        }
       }
     }
   }

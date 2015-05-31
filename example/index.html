@@ -96,32 +96,42 @@
 <div class="row">
     <div class="column size-medium-4 size-large-3">
         <h4>Selectable list</h4>
-        <ul class="list selectable">
-            <li>List item</li>
-            <li>List item</li>
-            <li>List item</li>
-            <li class="selected">Selected list item</li>
-            <li>List item</li>
-        </ul>
+        <nav>
+            <ul class="list">
+                <li><a>List item</a></li>
+                <li><a class="selected">Selected list item</a></li>
+                <li><a>List item</a></li>
+                <li><a>List item</a></li>
+                <li><a>List item</a></li>
+            </ul>
+        </nav>
     </div>
     <div class="column size-medium-4 size-large-3">
         <h4>File list</h4>
-        <ul class="list selectable">
-            <li class="file">List item</li>
-            <li class="file">List item</li>
-            <li class="folder selected">List item</li>
-            <li class="parent">
-                <ul class="list selectable">
-                    <li class="file">List item</li>
-                    <li class="file selected">List item</li>
-                    <li class="folder">List item</li>
-                    <li class="folder">Selected list item</li>
-                    <li class="file">List item</li>
-                </ul>
-            </li>
-            <li class="folder">Selected list item</li>
-            <li class="file">List item</li>
-        </ul>
+        <nav>
+            <ul class="list">
+                <li><a class="file">List item</a></li>
+                <li><a class="file">List item</a></li>
+                <li>
+                    <a class="folder selected">Selected list item</a>
+                    <ul class="list">
+                        <li><a class="file">List item</a></li>
+                        <li><a class="file selected">Selected list item</a></li>
+                        <li>
+                            <a class="folder">List item</a>
+                            <ul class="list">
+                                <li><a class="folder">List item</a></li>
+                                <li><a class="file">List item</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="folder">List item</a></li>
+                        <li><a class="file">List item</a></li>
+                    </ul>
+                </li>
+                <li><a class="folder">List item</a></li>
+                <li><a class="file">List item</a></li>
+            </ul>
+        </nav>
     </div>
     <div class="column size-medium-4 size-large-3">
 
