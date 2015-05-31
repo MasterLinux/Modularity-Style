@@ -14,7 +14,13 @@ button {
   font-size: $font-size-normal;
   cursor: pointer;
 
+  &:hover {
+    border: 1px solid $color-secondary;
+    color: $color-secondary;
+  }
+
   &:disabled {
+    border: inherit;
     background: $color-primary-light;
     color: $color-primary;
     cursor: default;
@@ -25,8 +31,8 @@ button {
   }
 
   &:active {
-    border: 1px solid $color-secondary;
-    color: $color-secondary;
+    border: 1px solid $color-secondary-dark;
+    color: $color-secondary-dark;
   }
 
   &.mobile {

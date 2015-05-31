@@ -243,15 +243,19 @@ button {
   background: #556270;
   font-size: 14px;
   cursor: pointer; }
+  button:hover {
+    border: 1px solid #fbb829;
+    color: #fbb829; }
   button:disabled {
+    border: inherit;
     background: #8292a3;
     color: #556270;
     cursor: default; }
   button:focus {
     outline: 0; }
   button:active {
-    border: 1px solid #fbb829;
-    color: #fbb829; }
+    border: 1px solid #ff9900;
+    color: #ff9900; }
   button.mobile {
     min-height: 44px;
     min-width: 120px; }
