@@ -41,7 +41,7 @@ nav {
 
           &.file {
             @include list-background-image("ic_file.png");
-            padding-left: 20px;
+            padding-left: $list-icon-width;
 
             &:hover {
               @include list-background-image("ic_file.png", $color-secondary);
@@ -54,7 +54,7 @@ nav {
 
           &.folder {
             @include list-background-image("ic_folder.png");
-            padding-left: 20px;
+            padding-left: $list-icon-width;
 
             &:hover {
               @include list-background-image("ic_folder.png", $color-secondary);
