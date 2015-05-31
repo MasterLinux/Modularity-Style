@@ -6,7 +6,7 @@ $grid-size-medium: $media-width-tablet;
 $grid-type-small: small;
 $grid-type-medium: medium;
 $grid-type-large: large;
-$grid-padding: $padding-default;
+$grid-padding: $padding-normal;
 
 // Calculates the width of a column by its weight
 @function calc-grid-column-width($weight) {

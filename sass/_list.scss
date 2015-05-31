@@ -1,5 +1,79 @@
 @import "style";
 
+$list-padding: $padding-normal / 2;
+$list-icon-width: 20px;
+$list-icon-height: auto;
+
+@mixin list-background-image($image-name, $background: transparent) {
+  @include background-image($image-name, $background, $position: center left, $size: $list-icon-width $list-icon-height, $repeat: no-repeat);
+  padding-left: 20px;
+}
+
 ul {
-  list-style: none;
+  &.list {
+    list-style: none;
+    font-weight: lighter;
+
+    &.selectable li {
+      &.parent {
+        padding: 0 0 0 $list-icon-width;
+      }
+
+      &:hover,
+      &.selected {
+        background: $color-secondary;
+        cursor: pointer;
+
+        &.file {
+          @include list-background-image("ic_file.png", $color-secondary);
+        }
+
+        &.folder {
+          @include list-background-image("ic_folder.png", $color-secondary);
+        }
+
+        &.parent {
+          background: none;
+        }
+      }
+
+      &.selected {
+        font-weight: normal;
+      }
+
+      &:active {
+        background: $color-secondary-dark;
+
+        &.file {
+          @include list-background-image("ic_file.png", $color-secondary-dark);
+        }
+
+        &.folder {
+          @include list-background-image("ic_folder.png", $color-secondary-dark);
+        }
+
+        &.parent {
+          background: none;
+        }
+      }
+    }
+
+    li {
+      border-bottom: 1px solid $color-primary-dark;
+      padding: $list-padding;
+      box-sizing: border-box;
+
+      &:last-child {
+        border: none;
+      }
+
+      &.file {
+        @include list-background-image("ic_file.png");
+      }
+
+      &.folder {
+        @include list-background-image("ic_folder.png");
+      }
+    }
+  }
 }

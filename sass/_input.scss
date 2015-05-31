@@ -1,6 +1,6 @@
 @import "style";
 
-$input-padding: $padding-default / 2;
+$input-padding: $padding-normal / 2;
 $input-icon-width: 25px;
 $input-icon-height: auto;
 
@@ -8,9 +8,8 @@ input {
   background: $color-primary-dark;
   border: 1px solid $color-primary-light;
   color: $color-primary-light;
-  font-size: $font-size-normal;
   box-sizing: border-box;
-  border-radius: $border-radius-default;
+  border-radius: $border-radius-normal;
   padding: $input-padding;
   font-weight: lighter;
 
