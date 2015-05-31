@@ -5,6 +5,20 @@ $pixel-ratio-xhdpi: 2.0;
 $pixel-ratio-xxhdpi: 3.0;
 $pixel-ratio-xxxhdpi: 4.0;
 
+/* fonts */
+$font-primary: 'Source Sans Pro', sans-serif;
+$font-secondary: 'Lora', serif;
+
+// font for texts
+@mixin font-primary() {
+  font-family: $font-primary;
+}
+
+// font for headers, etc.
+@mixin font-secondary() {
+  font-family: $font-secondary;
+}
+
 /* colors */
 $color-primary: rgb(85, 98, 112);
 $color-primary-light: rgb(130, 146, 163);

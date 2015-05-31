@@ -1,9 +1,15 @@
 @charset "UTF-8";
 
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Lora:400,700,400italic,700italic);
+
 @import "style";
 @import "grid";
 @import "input";
 @import "button";
+
+* {
+  @include font-primary();
+}
 
 body {
   background: $color-primary;

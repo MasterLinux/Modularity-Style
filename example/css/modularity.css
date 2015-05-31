@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Lora:400,700,400italic,700italic);
+/* fonts */
 /* colors */
 /* sizes */
 /* backgrounds */
@@ -10,84 +12,120 @@
     content: ""; }
   .row .column {
     padding: 0 5px;
-    box-sizing: border-box;
-    float: left; }
+    box-sizing: border-box; }
     @media (max-width: 768px) {
       .row .column.size-small-1 {
-        width: 8.33333%; }
+        width: 8.33333%;
+        float: left; }
       .row .column.size-small-2 {
-        width: 16.66667%; }
+        width: 16.66667%;
+        float: left; }
       .row .column.size-small-3 {
-        width: 25%; }
+        width: 25%;
+        float: left; }
       .row .column.size-small-4 {
-        width: 33.33333%; }
+        width: 33.33333%;
+        float: left; }
       .row .column.size-small-5 {
-        width: 41.66667%; }
+        width: 41.66667%;
+        float: left; }
       .row .column.size-small-6 {
-        width: 50%; }
+        width: 50%;
+        float: left; }
       .row .column.size-small-7 {
-        width: 58.33333%; }
+        width: 58.33333%;
+        float: left; }
       .row .column.size-small-8 {
-        width: 66.66667%; }
+        width: 66.66667%;
+        float: left; }
       .row .column.size-small-9 {
-        width: 75%; }
+        width: 75%;
+        float: left; }
       .row .column.size-small-10 {
-        width: 83.33333%; }
+        width: 83.33333%;
+        float: left; }
       .row .column.size-small-11 {
-        width: 91.66667%; }
+        width: 91.66667%;
+        float: left; }
       .row .column.size-small-12 {
-        width: 100%; } }
+        width: 100%;
+        float: left; } }
     @media (min-width: 768px) and (max-width: 970px) {
       .row .column.size-medium-1 {
-        width: 8.33333%; }
+        width: 8.33333%;
+        float: left; }
       .row .column.size-medium-2 {
-        width: 16.66667%; }
+        width: 16.66667%;
+        float: left; }
       .row .column.size-medium-3 {
-        width: 25%; }
+        width: 25%;
+        float: left; }
       .row .column.size-medium-4 {
-        width: 33.33333%; }
+        width: 33.33333%;
+        float: left; }
       .row .column.size-medium-5 {
-        width: 41.66667%; }
+        width: 41.66667%;
+        float: left; }
       .row .column.size-medium-6 {
-        width: 50%; }
+        width: 50%;
+        float: left; }
       .row .column.size-medium-7 {
-        width: 58.33333%; }
+        width: 58.33333%;
+        float: left; }
       .row .column.size-medium-8 {
-        width: 66.66667%; }
+        width: 66.66667%;
+        float: left; }
       .row .column.size-medium-9 {
-        width: 75%; }
+        width: 75%;
+        float: left; }
       .row .column.size-medium-10 {
-        width: 83.33333%; }
+        width: 83.33333%;
+        float: left; }
       .row .column.size-medium-11 {
-        width: 91.66667%; }
+        width: 91.66667%;
+        float: left; }
       .row .column.size-medium-12 {
-        width: 100%; } }
+        width: 100%;
+        float: left; } }
     @media (min-width: 970px) {
       .row .column.size-large-1 {
-        width: 8.33333%; }
+        width: 8.33333%;
+        float: left; }
       .row .column.size-large-2 {
-        width: 16.66667%; }
+        width: 16.66667%;
+        float: left; }
       .row .column.size-large-3 {
-        width: 25%; }
+        width: 25%;
+        float: left; }
       .row .column.size-large-4 {
-        width: 33.33333%; }
+        width: 33.33333%;
+        float: left; }
       .row .column.size-large-5 {
-        width: 41.66667%; }
+        width: 41.66667%;
+        float: left; }
       .row .column.size-large-6 {
-        width: 50%; }
+        width: 50%;
+        float: left; }
       .row .column.size-large-7 {
-        width: 58.33333%; }
+        width: 58.33333%;
+        float: left; }
       .row .column.size-large-8 {
-        width: 66.66667%; }
+        width: 66.66667%;
+        float: left; }
       .row .column.size-large-9 {
-        width: 75%; }
+        width: 75%;
+        float: left; }
       .row .column.size-large-10 {
-        width: 83.33333%; }
+        width: 83.33333%;
+        float: left; }
       .row .column.size-large-11 {
-        width: 91.66667%; }
+        width: 91.66667%;
+        float: left; }
       .row .column.size-large-12 {
-        width: 100%; } }
+        width: 100%;
+        float: left; } }
 
+/* fonts */
 /* colors */
 /* sizes */
 /* backgrounds */
@@ -98,7 +136,8 @@ input {
   font-size: 14px;
   box-sizing: border-box;
   border-radius: 8px;
-  padding: 5px; }
+  padding: 5px;
+  font-weight: 100; }
   input:disabled {
     background: #8292a3;
     color: #556270; }
@@ -187,6 +226,7 @@ input {
         input.search.error {
           background-image: url("../res/drawable-xxxhdpi/ic_search_error.png"); } }
 
+/* fonts */
 /* colors */
 /* sizes */
 /* backgrounds */
@@ -207,6 +247,9 @@ button {
   button:active {
     border: 1px solid #FF9900;
     color: #FF9900; }
+
+* {
+  font-family: "Source Sans Pro", sans-serif; }
 
 body {
   background: #556270; }
