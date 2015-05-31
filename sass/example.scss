@@ -1,6 +1,10 @@
 @import "style";
 @import "grid";
 
+input {
+  width: 100%;
+}
+
 .row {
   .column {
     &.example-column-1,
