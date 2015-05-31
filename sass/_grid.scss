@@ -1,8 +1,8 @@
 @import "style";
 
 $grid-columns: 12;
-$grid-size-small: 768px;
-$grid-size-medium: 970px;
+$grid-size-small: $media-width-phone;
+$grid-size-medium: $media-width-tablet;
 $grid-type-small: small;
 $grid-type-medium: medium;
 $grid-type-large: large;
