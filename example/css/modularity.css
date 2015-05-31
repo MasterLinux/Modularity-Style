@@ -103,8 +103,8 @@ input {
     background: #8292a3;
     color: #556270; }
   input:focus {
-    border: 1px solid #ff9900;
-    color: #ff9900;
+    border: 1px solid #FF9900;
+    color: #FF9900;
     box-shadow: none;
     outline: 0; }
   input.error {
@@ -196,12 +196,19 @@ button {
   border: 1px solid #8292a3;
   color: #8292a3;
   background: #556270;
+  font-size: 14px;
   cursor: pointer; }
+  button:disabled {
+    background: #8292a3;
+    color: #556270;
+    cursor: default; }
   button:focus {
     outline: 0; }
   button:active {
-    border: 1px solid #ff9900;
-    color: #ff9900; }
+    border: 1px solid #FF9900;
+    color: #FF9900; }
 
 body {
   background: #556270; }
+
+/*# sourceMappingURL=modularity.css.map */
