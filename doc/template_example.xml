@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<template dataContext="viewModelName">
+    <list items="#{@collectionName}">
+        <template>
+            <list-item
+                    type="file"
+                    title="#{.modelPropertyName}"
+                    on-click="#{@functionName()}"/>
+        </template>
+    </list>
+</template>
+

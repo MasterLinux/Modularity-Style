@@ -22,10 +22,81 @@ abstract class HtmlElementView<TElement extends html.HtmlElement> extends View {
   }
 
   @override
-  void setup(List<ViewBinding> bindings) {
+  void setup() {
     _htmlElement = createHtmlElement();
+    super.setup();
 
-    super.setup(bindings);
     setupHtmlElement(_htmlElement);
+  }
+}
+
+class TextChangedEventArgs implements EventArgs {
+  String text;
+
+  TextChangedEventArgs(this.text);
+}
+
+
+/// View representation of an [InputElement]
+class InputElementView extends HtmlElementView<html.InputElement> {
+  StreamSubscription<html.Event> _onTextChangedSubscription;
+
+  InputElementView({ViewModel viewModel, List<ViewBinding> bindings}) : super(viewModel: viewModel, bindings: bindings);
+
+  // events
+  static const String onTextChangedEvent = "onTextChanged";
+
+  // attributes
+  static const String textAttribute = "text";
+
+  @override
+  html.InputElement createHtmlElement() => new html.InputElement();
+
+  @override
+  void setupHtmlElement(html.InputElement element) {
+    //if (hasEventHandler(onTextChangedEvent)) {
+      _onTextChangedSubscription = element.onInput.listen((event) {
+        invokeEventHandler(onTextChangedEvent, this, new TextChangedEventArgs(event.target.value));
+      });
+    //}
+  }
+
+  @override
+  void cleanup() {
+    super.cleanup();
+
+    if (_onTextChangedSubscription != null) {
+      _onTextChangedSubscription.cancel();
+      _onTextChangedSubscription = null;
+    }
+  }
+
+  @override
+  void onPropertyChanged(String name, dynamic value) {
+    switch (name) {
+      case textAttribute:
+        text = value as String;
+        break;
+    }
+  }
+
+  set text(String text) => _htmlElement.value = text;
+
+  String get text => _htmlElement.value;
+}
+
+class DivElementView extends HtmlElementView<html.DivElement> {
+
+  @override
+  html.DivElement createHtmlElement() => new html.DivElement();
+
+  @override
+  void setupHtmlElement(html.DivElement element) {
+    // does nothing
+  }
+
+  @override
+  void onPropertyChanged(String name, value) {
+    // TODO: implement onPropertyChanged
   }
 }

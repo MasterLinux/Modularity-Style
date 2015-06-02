@@ -14,6 +14,10 @@ class ViewBinding {
   ViewBinding(this.type, this.attributeName, this.propertyName, {this.defaultValue});
 }
 
+abstract class EventArgs {
+
+}
+
 // similar to the state in react.js
 abstract class ViewModel {
   ClassLoader<ViewModel> _instance;
@@ -91,9 +95,6 @@ abstract class ViewModel {
 
 /// Represents a view
 abstract class View {
-  final Map<String, String> _eventHandlerBindings = new Map<String, String>();
-  final Map<String, String> _attributeBindings = new Map<String, String>();
-  final Map<String, String> _propertyBindings = new Map<String, String>();
   final List<View> subviews = new List<View>();
   final ViewModel viewModel;
   String _id;
@@ -103,7 +104,7 @@ abstract class View {
   /// Initializes the view with a [ViewModel] and a list of [ViewBinding]s
   View({this.viewModel, List<ViewBinding> bindings}) {
     _id = new utility.UniqueId("mod_view").build();
-    setup(bindings);
+    setup();
 
     if (viewModel != null) {
       viewModel.subscribe(this);
@@ -121,15 +122,9 @@ abstract class View {
     return viewLoader.instance;
   }
 
-  /// Setups the view. Can be overridden to add event handler, etc.
-  void setup(List<ViewBinding> bindings) {
-    //map attributes to view model
-    if (bindings != null) {
-      for (var binding in bindings) {
-        addBinding(binding);
-      }
-    }
-  }
+  /// Setups the view. Used
+  /// to add event handler, etc.
+  void setup();
 
   /// Cleanup function which is used to remove events [StreamSubscription], etc.
   /// before the view is removed from DOM
@@ -155,8 +150,7 @@ abstract class View {
   /// Adds the view to DOM
   Future addToDOM(String parentId) async {
     var parentNode = html.document.querySelector("#${parentId}");
-    var element = (await toHtml())
-      ..id = id;
+    var element = (await toHtml())..id = id;
 
     if (parentNode != null) {
       parentNode.nodes.add(element);
@@ -194,149 +188,13 @@ abstract class View {
       viewModel.onEventHandlerInvoked(_eventHandlerBindings[name], sender, args);
     }
   }
+}
+
+
+
+
 
 /*
-  /// Checks whether a specific attribute binding exists
-  bool hasAttribute(String name) => _attributeBindings.containsKey(name);
-
-  /// Checks whether a specific event handler binding exists
-  bool hasEventHandler(String name) => _eventHandlerBindings.containsKey(name);
-
-  /// Invokes a specific event handler
-  void invokeEventHandler(String name, View sender, EventArgs args) {
-    viewModel.invokeEventHandler(_eventHandlerBindings[name], sender, args);
-  }
-
-  /// Notifies the view that a specific property in view model is changed
-  void notifyPropertyChanged(String propertyName, dynamic value) {
-    var attributeName = _propertyBindings.containsKey(propertyName) ? _propertyBindings[propertyName] : null;
-
-    if (attributeName != null) {
-      onAttributeChanged(attributeName, value);
-    }
-  }
-
-  /// Handler which is invoked whenever a specific property in view model is changed
-  void onAttributeChanged(String name, dynamic value) {
-  }
-
-  /// Adds a new view binding
-  void addBinding(ViewBinding binding) {
-    // TODO allow multiple bindings
-    if (viewModel != null) {
-      switch (binding.type) {
-        case ViewBindingType.ATTRIBUTE:
-          _addAttributeBinding(binding.attributeName, binding.propertyName, binding.defaultValue);
-          break;
-        case ViewBindingType.EVENT_HANDLER:
-          _addEventHandlerBinding(binding.attributeName, binding.propertyName);
-          break;
-      }
-    } else {
-      // TODO log error viewModel is null
-    }
-  }
-
-  void _addEventHandlerBinding(String attributeName, String propertyName) {
-    if (viewModel.containsEventHandler(propertyName)) {
-      if (!_eventHandlerBindings.containsKey(attributeName)) {
-        _eventHandlerBindings[attributeName] = propertyName;
-      } else {
-        //TODO log error. binding already exists
-      }
-    } else {
-      //TODO event handler is missing
-    }
-  }
-
-  void _addAttributeBinding(String attributeName, String propertyName, dynamic defaultValue) {
-    if (viewModel.containsProperty(propertyName)) {
-      if (!_attributeBindings.containsKey(attributeName) && !_propertyBindings.containsKey(propertyName)) {
-        _attributeBindings[attributeName] = propertyName;
-        _propertyBindings[propertyName] = attributeName;
-
-        if (defaultValue != null) {
-          viewModel.updateProperty(propertyName, defaultValue);
-          //onAttributeChanged(attributeName, defaultValue);
-        }
-      } else {
-        //TODO log error. binding already exists
-      }
-    } else {
-      //TODO attribute is missing
-    }
-  } */
-}
-
-
-
-class TextChangedEventArgs implements EventArgs {
-  String text;
-
-  TextChangedEventArgs(this.text);
-}
-
-///
-///
-class TextInput extends HtmlElementView<html.InputElement> {
-  StreamSubscription<html.Event> _onTextChangedSubscription;
-
-  TextInput({ViewModel viewModel, List<ViewBinding> bindings}) : super(viewModel: viewModel, bindings: bindings);
-
-  // events
-  static const String onTextChangedEvent = "onTextChanged";
-
-  // attributes
-  static const String textAttribute = "text";
-
-  @override
-  html.InputElement createHtmlElement() {
-    return new html.InputElement();
-  }
-
-  @override
-  void setupHtmlElement(html.InputElement element) {
-    if (hasEventHandler(onTextChangedEvent)) {
-      _onTextChangedSubscription = element.onInput.listen((event) {
-        invokeEventHandler(onTextChangedEvent, this, new TextChangedEventArgs(event.target.value));
-      });
-    }
-  }
-
-  @override
-  void cleanup() {
-    super.cleanup();
-
-    if (_onTextChangedSubscription != null) {
-      _onTextChangedSubscription.cancel();
-      _onTextChangedSubscription = null;
-    }
-  }
-
-  @override
-  void onPropertyChanged(String name, dynamic value) {
-    switch (name) {
-      case textAttribute:
-        text = value as String;
-        break;
-    }
-  }
-
-  set text(String text) => _htmlElement.value = text;
-
-  String get text => _htmlElement.value;
-}
-
-class ContentView extends HtmlElementView<html.DivElement> {
-
-  @override
-  html.DivElement createHtmlElement() => new html.DivElement();
-
-  @override
-  void setupHtmlElement(html.DivElement element) {
-    // does nothing
-  }
-}
 
 class TestView extends View {
   //TODO remove
@@ -351,6 +209,6 @@ class TestView extends View {
       new ViewBinding(ViewBindingType.ATTRIBUTE, TextInput.textAttribute, "title")
     ]);
   }
-}
+}  */
 
 //TODO add ListView, FileTree, GridView, Button, TextView, Search
