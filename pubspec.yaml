@@ -1,0 +1,9 @@
+name: modularity-ui
+dependencies:
+  browser: any
+  xml: ">=2.0.0 <3.0.0"
+  class_loader:
+    git: git://github.com/MasterLinux/ClassLoader.git
+
+dev_dependencies:
+  scheduled_test: any
