@@ -1,4 +1,4 @@
-name: modularity-ui
+name: modularity_ui
 dependencies:
   browser: any
   xml: ">=2.0.0 <3.0.0"

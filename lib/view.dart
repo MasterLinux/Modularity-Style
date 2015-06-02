@@ -1,9 +1,4 @@
-library modularity.ui;
-
-import 'dart:html' as html;
-import 'dart:async' show StreamSubscription, Future;
-
-import 'package:class_loader/class_loader.dart';
+part of modularity.ui;
 
 enum ViewBindingType {
   EVENT_HANDLER,
@@ -17,57 +12,6 @@ class ViewBinding {
   final dynamic defaultValue;
 
   ViewBinding(this.type, this.attributeName, this.propertyName, {this.defaultValue});
-}
-
-/// Converts a [ViewTemplateModel] to a [View]
-class ViewConverter implements Converter<ViewTemplateModel, Future<View>> {
-  final ViewModel viewModel;
-
-  ViewConverter({this.viewModel});
-
-  Future<View> convert(ViewTemplateModel value) async {
-    var bindings = new List<ViewBinding>();
-    var subviews = new List<View>();
-
-    if (value.subviews != null) {
-      for (var subview in value.subviews) {
-        subviews.add(await convert(subview));
-      }
-    }
-
-    if (value.attributes != null) {
-      for (var attribute in value.attributes) {
-        bindings.add(new ViewBinding(
-            ViewBindingType.ATTRIBUTE,
-            attribute.attributeName,
-            attribute.propertyName,
-            defaultValue: attribute.defaultValue
-        ));
-      }
-    }
-
-    if (value.events != null) {
-      for (var event in value.events) {
-        bindings.add(new ViewBinding(
-            ViewBindingType.EVENT_HANDLER,
-            event.attributeName,
-            event.propertyName
-        ));
-      }
-    }
-
-    return await View.createView(
-        value.type,
-        libraryName: value.lib != null ? value.lib : View.defaultLibrary,
-        viewModel: viewModel,
-        bindings: bindings,
-        subviews: subviews
-    );
-  }
-
-  ViewTemplateModel convertBack(Future<View> value) {
-    throw new UnimplementedError();
-  }
 }
 
 // similar to the state in react.js
@@ -324,35 +268,7 @@ abstract class View {
   } */
 }
 
-/// A view implementation used to create views using a [HtmlElement]
-abstract class HtmlElementView<TElement extends html.HtmlElement> extends View {
-  TElement _htmlElement;
 
-  HtmlElementView({ViewModel viewModel, List<ViewBinding> bindings}) : super(viewModel: viewModel, bindings: bindings);
-
-  @override
-  Future<TElement> toHtml() async => _htmlElement;
-
-  /// Method used to create the HTML element
-  /// which represents this view
-  TElement createHtmlElement();
-
-  /// Method used to setup the HTML element like adding event handler, etc.
-  void setupHtmlElement(TElement element);
-
-  @override
-  Future<View> render() async {
-    return this;
-  }
-
-  @override
-  void setup(List<ViewBinding> bindings) {
-    _htmlElement = createHtmlElement();
-
-    super.setup(bindings);
-    setupHtmlElement(_htmlElement);
-  }
-}
 
 class TextChangedEventArgs implements EventArgs {
   String text;
