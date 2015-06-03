@@ -1,5 +1,6 @@
 part of modularity.ui;
 
+/*
 enum ViewBindingType {
   EVENT_HANDLER,
   ATTRIBUTE
@@ -12,6 +13,11 @@ class ViewBinding {
   final dynamic defaultValue;
 
   ViewBinding(this.type, this.attributeName, this.propertyName, {this.defaultValue});
+} */
+
+
+abstract class ViewBindingCollection {
+
 }
 
 abstract class EventArgs {
@@ -20,8 +26,8 @@ abstract class EventArgs {
 
 // similar to the state in react.js
 abstract class ViewModel {
-  ClassLoader<ViewModel> _instance;
   List<View> _views = new List<View>();
+  ClassLoader<ViewModel> _instance;
 
   /// Initializes the view model
   ViewModel() {
@@ -97,13 +103,16 @@ abstract class ViewModel {
 abstract class View {
   final List<View> subviews = new List<View>();
   final ViewModel viewModel;
+
+  ClassLoader<View> _instance;
   String _id;
 
   static const String defaultLibrary = "modularity.core.view";
 
   /// Initializes the view with a [ViewModel] and a list of [ViewBinding]s
   View({this.viewModel, List<ViewBinding> bindings}) {
-    _id = new utility.UniqueId("mod_view").build();
+    _instance = new ClassLoader<View>.fromInstance(this);
+    _id = new UniqueId("mod_view").build();
     setup();
 
     if (viewModel != null) {
@@ -150,7 +159,8 @@ abstract class View {
   /// Adds the view to DOM
   Future addToDOM(String parentId) async {
     var parentNode = html.document.querySelector("#${parentId}");
-    var element = (await toHtml())..id = id;
+    var element = (await toHtml())
+      ..id = id;
 
     if (parentNode != null) {
       parentNode.nodes.add(element);
@@ -180,7 +190,27 @@ abstract class View {
   }
 
   /// Handler which is invoked whenever a specific property in view model is changed
-  void onPropertyChanged(String name, dynamic value); //TODO update children/subviews, too
+  void onPropertyChanged(String name, dynamic value) {
+    //TODO _instance.load()
+
+    //resolve property name
+    var names = _mappings.properties[name].attributeNames;
+
+    for (var name in names) {
+      var nameSymbol = new Symbol(name);
+
+      if (_instance.hasSetter(nameSymbol)) {
+        _instance.setter[nameSymbol].set(value);
+      }
+    }
+
+    // notify children
+    for (var subview in subviews) {
+      subview.onPropertyChanged(name, value);
+    }
+  }
+
+  //TODO update children/subviews, too
 
   /// Invokes a specific event handler
   void invokeEventHandler(String name, View sender, EventArgs args) {
@@ -189,9 +219,6 @@ abstract class View {
     }
   }
 }
-
-
-
 
 
 /*

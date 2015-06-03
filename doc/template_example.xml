@@ -4,7 +4,7 @@
         <template>
             <list-item
                     type="file"
-                    title="#{.modelPropertyName}"
+                    title="#{.modelPropertyName?:defaultValue}"
                     on-click="#{@functionName()}"/>
         </template>
     </list>

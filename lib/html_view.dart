@@ -54,11 +54,9 @@ class InputElementView extends HtmlElementView<html.InputElement> {
 
   @override
   void setupHtmlElement(html.InputElement element) {
-    //if (hasEventHandler(onTextChangedEvent)) {
-      _onTextChangedSubscription = element.onInput.listen((event) {
-        invokeEventHandler(onTextChangedEvent, this, new TextChangedEventArgs(event.target.value));
-      });
-    //}
+    _onTextChangedSubscription = element.onInput.listen((event) {
+      invokeEventHandler(onTextChangedEvent, this, new TextChangedEventArgs(event.target.value));
+    });
   }
 
   @override
@@ -80,8 +78,10 @@ class InputElementView extends HtmlElementView<html.InputElement> {
     }
   }
 
+  /// Sets the [text] of the input element
   set text(String text) => _htmlElement.value = text;
 
+  /// Gets the [text] of the input element
   String get text => _htmlElement.value;
 }
 
