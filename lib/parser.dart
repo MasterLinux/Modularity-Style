@@ -1,31 +1,30 @@
 part of modularity.ui;
 
 class ViewParser {
-  static const String namespaceAttributeName = "namespace";
+  static const String xmlns = "xmlns";
   static const String defaultNamespace = "modularity.ui";
 
   View parse(ViewModel viewModel, String xmlString) {
     var template = xml.parse(xmlString);
-    String parentNamespace = null;
+    var namespaces = <String, String>{};
     View view = null;
 
     // iterate through each element
     template.descendants
         .where((node) => node.nodeType == xml.XmlNodeType.ELEMENT)
         .forEach((node) {
-          var name = node.name.local;
-          var namespaceAttribute = node.attributes
-              .firstWhere((attribute) => _isAttributeWithName(attribute, namespaceAttributeName), orElse: () => null);
+          var name = node.name;
 
-          if(namespaceAttribute != null) {
-            parentNamespace = namespaceAttribute.value;
-          } else if(parentNamespace == null) {
-            parentNamespace = defaultNamespace;
-          }
+          // register namespaces
+          node.attributes
+              .where((attribute) => attribute.name.prefix == xmlns)
+              .forEach((attribute) => namespaces[attribute.name.local] = attribute.value);
 
-          print(name);
-          print(parentNamespace);
+          // get view namespace
+          var namespace = name.prefix != null && namespaces.containsKey(name.prefix) ? namespaces[name.prefix] : defaultNamespace;
 
+          print(name.local);
+          print(namespace);
         }
     );
 

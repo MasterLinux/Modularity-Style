@@ -11,9 +11,12 @@
  
 #Template Example
 ```xml
-<?xml version="1.0" ?>
-<template dataContext="viewModelName">
-    <list items="#{@collectionName}">
+<?xml version="1.0" encoding="utf-8"?>
+<template
+    xmlns:custom="custom.namespace"
+    dataContext="viewModelName">
+
+    <custom:list items="#{@collectionName}">
         <template>
             <list-item
                     type="file"
