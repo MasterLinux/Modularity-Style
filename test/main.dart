@@ -15,8 +15,8 @@ void main() {
   var parser = new ViewParser().parse(null, '''
     <?xml version="1.0" encoding="utf-8"?>
     <template
-        xmlns:custom="custom.namespace"
-        dataContext="viewModelName">
+        xmlns:custom="modularity.ui"
+        data-context="viewModelName">
 
         <custom:list items="#{@collectionName}">
             <template>

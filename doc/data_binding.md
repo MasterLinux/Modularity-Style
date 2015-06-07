@@ -14,7 +14,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <template
     xmlns:custom="custom.namespace"
-    dataContext="viewModelName">
+    data-context="viewModelName">
 
     <custom:list items="#{@collectionName}">
         <template>
