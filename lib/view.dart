@@ -15,8 +15,19 @@ class ViewBinding {
   ViewBinding(this.type, this.attributeName, this.propertyName, {this.defaultValue});
 } */
 
+class ViewController {
+  View view;
+}
 
-abstract class ViewBindingCollection {
+class ViewBinding {
+  View view;
+  String attributeName;
+  ViewModel viewModel;
+  String propertyName;
+
+  ViewBinding(this.view, this.attributeName, this.viewModel, this.propertyName) {
+
+  }
 
 }
 
