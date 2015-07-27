@@ -1,34 +1,70 @@
 part of modularity.ui;
 
-/*
 enum ViewBindingType {
-  EVENT_HANDLER,
-  ATTRIBUTE
+  ValueBinding,
+  HandlerBinding
 }
 
 class ViewBinding {
-  final ViewBindingType type;
+  final ViewBindingType bindingType;
   final String attributeName;
   final String propertyName;
-  final dynamic defaultValue;
 
-  ViewBinding(this.type, this.attributeName, this.propertyName, {this.defaultValue});
-} */
-
-class ViewController {
-  View view;
+  ViewBinding(this.bindingType, this.attributeName, this.propertyName);
 }
 
-class ViewBinding {
-  View view;
-  String attributeName;
-  ViewModel viewModel;
-  String propertyName;
+/// Acts as mediator
+class ViewBindingResolver {
+  final HashMap<String, String> attributeMappings = new HashMap();
+  final HashMap<String, String> propertyMappings = new HashMap();
+  final HashMap<String, String> handlerMappings = new HashMap();
+  final ViewModel viewModel;
+  final View view;
 
-  ViewBinding(this.view, this.attributeName, this.viewModel, this.propertyName) {
+  ViewBindingResolver(this.viewModel, this.view);
 
+  void add(ViewBinding binding) {
+    switch(binding.bindingType) {
+      case ViewBindingType.ValueBinding:
+        attributeMappings[binding.attributeName] = binding.propertyName;
+        propertyMappings[binding.propertyName] = binding.attributeName;
+        break;
+
+      case ViewBindingType.HandlerBinding:
+        handlerMappings[binding.attributeName] = binding.propertyName;
+        break;
+    }
   }
 
+  void invokeEventHandler(String name, View sender, EventArgs args) {
+    if (handlerMappings.containsKey(name)) {
+      var handlerName = handlerMappings[name];
+      viewModel.onEventHandlerInvoked(handlerName, sender, args);
+
+    } else {
+      // TODO throw warning
+    }
+  }
+
+  void notifyPropertyChanged(String propertyName, dynamic value) {
+    if (propertyMappings.containsKey(propertyName)) {
+      var attributeName = propertyMappings[propertyName];
+      view.onPropertyChanged(attributeName, value);
+
+    } else {
+      // TODO throw warning
+    }
+  }
+
+  void notifyAttributeChanged(String attributeName, dynamic value) {
+    if (attributeMappings.containsKey(attributeName)) {
+      var propertyName = attributeMappings[attributeName];
+      viewModel.onAttributeChanged(propertyName, value);
+
+    } else {
+      // TODO throw warning
+    }
+  }
 }
 
 abstract class EventArgs {
@@ -37,8 +73,8 @@ abstract class EventArgs {
 
 // similar to the state in react.js
 abstract class ViewModel {
-  List<View> _views = new List<View>();
   ClassLoader<ViewModel> _instance;
+  ViewBindingResolver bindingResolver;
 
   /// Initializes the view model
   ViewModel() {
@@ -59,15 +95,18 @@ abstract class ViewModel {
   ///     // the value for updating the view
   ///     String get specificProperty => _specificProperty;
   ///
-  void notifyPropertyChanged(String name) {
-    var nameSymbol = new Symbol(name);
+  void notifyPropertyChanged(String propertyName) {
+    var nameSymbol = new Symbol(propertyName);
 
     if (_instance.hasGetter(nameSymbol)) {
       var value = _instance.getter[nameSymbol].get();
 
-      for (var view in _views) {
-        view.onPropertyChanged(name, value);
+      if (bindingResolver != null) {
+        bindingResolver.notifyPropertyChanged(propertyName, value);
+      } else {
+        // TODO throw warning, binding resolver not found
       }
+
     } else {
       // TODO throw warning, getter not found
     }
@@ -94,26 +133,12 @@ abstract class ViewModel {
       // TODO throw warning, method not found
     }
   }
-
-  /// Subscribes a view as observer so it is able to listen for attribute changes
-  void subscribe(View view) {
-    if (!_views.contains(view)) {
-      _views.add(view);
-    }
-  }
-
-  /// Unsubscribes a specific view from listening
-  void unsubscribe(View view) {
-    if (_views.contains(view)) {
-      _views.remove(view);
-    }
-  }
 }
 
 /// Represents a view
 abstract class View {
   final List<View> subviews = new List<View>();
-  final ViewModel viewModel;
+  ViewBindingResolver bindingResolver;
 
   ClassLoader<View> _instance;
   String _id;
@@ -121,14 +146,10 @@ abstract class View {
   static const String defaultLibrary = "modularity.core.view";
 
   /// Initializes the view with a [ViewModel] and a list of [ViewBinding]s
-  View({this.viewModel, List<ViewBinding> bindings}) {
+  View() {
     _instance = new ClassLoader<View>.fromInstance(this);
     _id = new UniqueId("mod_view").build();
     setup();
-
-    if (viewModel != null) {
-      viewModel.subscribe(this);
-    }
   }
 
   /// Loads a view by its [viewType]
@@ -149,8 +170,6 @@ abstract class View {
   /// Cleanup function which is used to remove events [StreamSubscription], etc.
   /// before the view is removed from DOM
   void cleanup() {
-    viewModel.unsubscribe(this);
-
     for (var subview in subviews) {
       subview.cleanup();
     }
@@ -195,24 +214,20 @@ abstract class View {
 
   /// Notifies the view model that a specific view attribute is changed
   void notifyAttributeChanged(String name, dynamic value) {
-    if (viewModel != null) {
-      viewModel.onAttributeChanged(name, value);
+    if (bindingResolver != null) {
+      bindingResolver.notifyAttributeChanged(name, value);
+    } else {
+      // TODO throw warning, binding resolver not found
     }
   }
+    //TODO _instance.load()
 
   /// Handler which is invoked whenever a specific property in view model is changed
   void onPropertyChanged(String name, dynamic value) {
-    //TODO _instance.load()
+    var nameSymbol = new Symbol(name);
 
-    //resolve property name
-    var names = _mappings.properties[name].attributeNames;
-
-    for (var name in names) {
-      var nameSymbol = new Symbol(name);
-
-      if (_instance.hasSetter(nameSymbol)) {
-        _instance.setter[nameSymbol].set(value);
-      }
+    if (_instance.hasSetter(nameSymbol)) {
+      _instance.setter[nameSymbol].set(value);
     }
 
     // notify children
@@ -224,9 +239,11 @@ abstract class View {
   //TODO update children/subviews, too
 
   /// Invokes a specific event handler
-  void invokeEventHandler(String name, View sender, EventArgs args) {
-    if (viewModel != null) {
-      viewModel.onEventHandlerInvoked(_eventHandlerBindings[name], sender, args);
+  void invokeEventHandler(String handlerName, View sender, EventArgs args) {
+    if (bindingResolver != null) {
+      bindingResolver.invokeEventHandler(handlerName, sender, args);
+    } else {
+      // TODO throw warning, binding resolver not found
     }
   }
 }
