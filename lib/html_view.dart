@@ -4,8 +4,6 @@ part of modularity.ui;
 abstract class HtmlElementView<TElement extends html.HtmlElement> extends View {
   TElement _htmlElement;
 
-  HtmlElementView({ViewModel viewModel, List<ViewBinding> bindings}) : super(viewModel: viewModel, bindings: bindings);
-
   @override
   Future<TElement> toHtml() async => _htmlElement;
 
@@ -40,8 +38,6 @@ class TextChangedEventArgs implements EventArgs {
 /// View representation of an [InputElement]
 class InputElementView extends HtmlElementView<html.InputElement> {
   StreamSubscription<html.Event> _onTextChangedSubscription;
-
-  InputElementView({ViewModel viewModel, List<ViewBinding> bindings}) : super(viewModel: viewModel, bindings: bindings);
 
   // events
   static const String onTextChangedEvent = "onTextChanged";

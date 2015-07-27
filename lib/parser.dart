@@ -1,5 +1,6 @@
 part of modularity.ui;
 
+// TODO Rename to TemplateParser
 class ViewParser {
   static const String defaultNamespace = "modularity.ui";
   static const String xmlns = "xmlns";
