@@ -4,6 +4,8 @@ part of modularity.ui;
 abstract class HtmlElementView<TElement extends html.HtmlElement> extends View {
   TElement _htmlElement;
 
+  HtmlElementView(ViewBindingResolver bindingResolver) : super(bindingResolver);
+
   @override
   Future<TElement> toHtml() async => _htmlElement;
 
@@ -45,6 +47,8 @@ class InputElementView extends HtmlElementView<html.InputElement> {
   // attributes
   static const String textAttribute = "text";
 
+  InputElementView(ViewBindingResolver bindingResolver) : super(bindingResolver);
+
   @override
   html.InputElement createHtmlElement() => new html.InputElement();
 
@@ -82,6 +86,8 @@ class InputElementView extends HtmlElementView<html.InputElement> {
 }
 
 class DivElementView extends HtmlElementView<html.DivElement> {
+
+  DivElementView(ViewBindingResolver bindingResolver) : super(bindingResolver);
 
   @override
   html.DivElement createHtmlElement() => new html.DivElement();

@@ -18,10 +18,8 @@ class ViewBindingResolver {
   final HashMap<String, String> attributeMappings = new HashMap();
   final HashMap<String, String> propertyMappings = new HashMap();
   final HashMap<String, String> handlerMappings = new HashMap();
-  final ViewModel viewModel;
-  final View view;
-
-  ViewBindingResolver(this.viewModel, this.view);
+  ViewModel viewModel;
+  View view;
 
   void add(ViewBinding binding) {
     switch(binding.bindingType) {
@@ -74,11 +72,12 @@ abstract class EventArgs {
 // similar to the state in react.js
 abstract class ViewModel {
   ClassLoader<ViewModel> _instance;
-  ViewBindingResolver bindingResolver;
+  final ViewBindingResolver bindingResolver;
 
   /// Initializes the view model
-  ViewModel() {
+  ViewModel(this.bindingResolver) {
     _instance = new ClassLoader<ViewModel>.fromInstance(this);
+    bindingResolver.viewModel = this;
   }
 
   /// Notifies the view that a specific property in this view model is changed
@@ -138,7 +137,7 @@ abstract class ViewModel {
 /// Represents a view
 abstract class View {
   final List<View> subviews = new List<View>();
-  ViewBindingResolver bindingResolver;
+  final ViewBindingResolver bindingResolver;
 
   ClassLoader<View> _instance;
   String _id;
@@ -146,18 +145,20 @@ abstract class View {
   static const String defaultLibrary = "modularity.core.view";
 
   /// Initializes the view with a [ViewModel] and a list of [ViewBinding]s
-  View() {
+  View(this.bindingResolver) {
     _instance = new ClassLoader<View>.fromInstance(this);
     _id = new UniqueId("mod_view").build();
+    bindingResolver.view = this;
     setup();
   }
 
   /// Loads a view by its [viewType]
-  static Future<View> createView(String viewType, {String libraryName: View.defaultLibrary, List<ViewBinding> bindings, ViewModel viewModel, List<View> subviews}) async {
+  static Future<View> createView(String viewType, {String libraryName: View.defaultLibrary, ViewBindingResolver bindingResolver, List<View> subviews}) async {
     var viewLoader = new ClassLoader<View>(new Symbol(libraryName), new Symbol(viewType), const Symbol(""), [], {
-      #viewModel: viewModel,
-      #bindings: bindings
+      #bindingResolver: bindingResolver
     });
+
+    // TODO add subviews
 
     await viewLoader.load();
     return viewLoader.instance;
