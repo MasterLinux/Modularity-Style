@@ -11,3 +11,4 @@ part 'unique_id.dart';
 part 'view.dart';
 part 'html_view.dart';
 part 'parser.dart';
+part 'view_refactoring.dart';
